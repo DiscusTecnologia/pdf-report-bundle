@@ -1,0 +1,4 @@
+services:
+    discus-tecnologia.pdf-report:
+        class: 'DiscusTecnologia\PdfReportBundle\Service\PdfReport'
+        arguments: ["@templating", "@twig.loader"]

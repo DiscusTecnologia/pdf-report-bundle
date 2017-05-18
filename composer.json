@@ -1,0 +1,25 @@
+{
+    "name": "discustecnologia/pdf-report-bundle",
+    "description": "Symfony Bundle. Wrapper of wkhtmltopdf that use twig templating to generate pdf files.",
+    "license": "MIT",
+    "keywords": ["symfony", "bundle", "pdf", "report"],
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Rodrigo Ramos",
+            "email": "rodrigoramos@discustecnologia.com.br",
+            "homepage": "http://www.discustecnologia.com.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "DiscusTecnologia\\PdfReportBundle\\": ""
+        }
+    },
+    "require": {
+        "php": ">=5.5.9",
+        "symfony/framework-bundle": "~2.7|~3.0",
+        "mikehaertl/phpwkhtmltopdf": "^2.2",
+        "twig/twig": "^1.0||^2.0"
+    }
+}
