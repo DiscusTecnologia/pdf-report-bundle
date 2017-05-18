@@ -1,6 +1,6 @@
 {
     "name": "discustecnologia/pdf-report-bundle",
-    "description": "Symfony Bundle. Wrapper of wkhtmltopdf that use twig templating to generate pdf files.",
+    "description": "Symfony Bundle. Wrapper of wkhtmltopdf that uses twig templating to generate pdf files.",
     "license": "MIT",
     "keywords": ["symfony", "bundle", "pdf", "report"],
     "type": "symfony-bundle",

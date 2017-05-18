@@ -30,7 +30,7 @@ use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
 
 /**
- * Wrapper of wkhtmltopdf that use twig templating to generate pdf files.
+ * Wrapper of wkhtmltopdf that uses twig templating to generate pdf files.
  * @author Rodrigo Ramos <rodrigoramos@discustecnologia.com.br>
  * @name PdfReport
  * @license MIT
@@ -199,7 +199,7 @@ class PdfReport
     }
 
     /**
-     * Set pdf to be showed in black and white.
+     * Set pdf to be shown in black and white.
      * @param boolean $grayscale Set pdf to grayscale if true.
      * @return void
      */
