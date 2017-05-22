@@ -38,6 +38,14 @@ use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
  */
 class PdfReport
 {
+    //default pages sizes
+    const A4 = [210, 297];
+    const A3 = [297, 420];
+    const A5 = [148, 210];
+    const A2 = [420, 594];
+    const A1 = [594, 841];
+    const A0 = [841, 1189];
+
     private $dimensions = [
         'L' => 0,
         'B' => 0,
@@ -46,8 +54,7 @@ class PdfReport
         'pageW' => 210,
         'pageH' => 297,
         'headerH' => 30,
-        'footerH' => 30,
-        'footerW' => 210 - 20 - 20   //$pageW - $L - $R
+        'footerH' => 30
     ];
     private $orientation = "Portrait"; //"Landscape"
     private $showBookmarks = true;
@@ -125,6 +132,7 @@ class PdfReport
         $data['pdfReportPageHeader'] = $this->header;
         $data['pdfReportPageFooter'] = $this->footer;
         $data['pdfReportTotalPages'] = $this->totalPages;
+        $data['pdfReportOrientationPrtrait'] = $this->orientation == "Portrait" ? true : false;
         
         $this->twigLoader->addPath(__DIR__ . '/../Resources/views/', $namespace = '__main__');
         $content = $this->twig->render('DiscusTecnologiaPdfReportBundle:pdfReport:base-report.html.twig', $data);
@@ -193,8 +201,8 @@ class PdfReport
     public function setShowBookmarks($show = true)
     {
         $this->showBookmarks = $show;
-        if($show && isset($this->iniConf['no-outline'])) unset($this->iniConf['no-outline']);
-        if(!$show && !isset($this->iniConf['no-outline'])) array_push($this->iniConf, 'no-outline');
+        if(!$show && isset($this->iniConf['no-outline'])) unset($this->iniConf['no-outline']);
+        if($show && !isset($this->iniConf['no-outline'])) array_push($this->iniConf, 'no-outline');
         $this->pdf->setOptions($this->iniConf);
     }
 
@@ -206,8 +214,8 @@ class PdfReport
     public function setGrayscale($grayscale = false)
     {
         $this->grayscale = $grayscale;
-        if($grayscale && isset($this->iniConf['grayscale'])) unset($this->iniConf['grayscale']);
-        if(!$grayscale && !isset($this->iniConf['grayscale'])) array_push($this->iniConf, 'grayscale');
+        if(!$grayscale && isset($this->iniConf['grayscale'])) unset($this->iniConf['grayscale']);
+        if($grayscale && !isset($this->iniConf['grayscale'])) array_push($this->iniConf, 'grayscale');
         $this->pdf->setOptions($this->iniConf);
     }
 
@@ -224,17 +232,16 @@ class PdfReport
 
     /**
      * Set pdf pages size. Default value is A4 page size.
-     * @param int $widthmm Width of pages in milimeters.
-     * @param int $heightmm Height of pages in milimeters.
+     * @param array[int, int] [ Width of pages in milimeters, Height of pages in milimeters]
      * @return void
      */
-    public function setPageSize($widthmm = 210, $heightmm = 297)
+    public function setPageSize($size = [210, 297])
     {
-        $this->dimensions['pageW'] = $widthmm;
-        $this->dimensions['pageH'] = $heightmm;
+        $this->dimensions['pageW'] = $size[0];
+        $this->dimensions['pageH'] = $size[1];
         $this->dimensions['footerW'] = $this->dimensions['pageW'] - $this->dimensions['L'] - $this->dimensions['R'];
-        $this->iniConf['page-width'] = $widthmm;
-        $this->iniConf['page-height'] = $heightmm;
+        $this->iniConf['page-width'] = $size[0];
+        $this->iniConf['page-height'] = $size[1];
         $this->pdf->setOptions($this->iniConf);
     }
 

@@ -48,8 +48,8 @@ in the Software without restriction, including without limitation the rights
         body {
             margin:     0;
             padding:    0;
-            width:      {{ pdfReportDimensions['pageW'] }}mm;
-            height:     {{ pdfReportDimensions['pageH'] }}mm;
+            width:      {{ pdfReportOrientationPrtrait ? pdfReportDimensions['pageW'] : pdfReportDimensions['pageH'] }}mm;
+            height:     {{ pdfReportOrientationPrtrait ? pdfReportDimensions['pageH'] : pdfReportDimensions['pageW'] }}mm;
             font-family: Helvetica;
         }
 
@@ -58,8 +58,8 @@ in the Software without restriction, including without limitation the rights
             position:   relative;
             top:        0mm;
             left:       0mm;
-            width:      {{ pdfReportDimensions['pageW'] }}mm;
-            height:     {{ pdfReportDimensions['pageH'] }}mm;
+            width:      {{ pdfReportOrientationPrtrait ? pdfReportDimensions['pageW'] : pdfReportDimensions['pageH'] }}mm;
+            height:     {{ pdfReportOrientationPrtrait ? pdfReportDimensions['pageH'] : pdfReportDimensions['pageW'] }}mm;
         }
 
         #inner-area {
@@ -73,7 +73,7 @@ in the Software without restriction, including without limitation the rights
         #footer {
             position:   absolute;
             bottom:     {{ pdfReportDimensions['B'] }}mm;
-            width:      {{ pdfReportDimensions['footerW'] }}mm;
+            width:      {{ (pdfReportOrientationPrtrait ? pdfReportDimensions['pageW'] : pdfReportDimensions['pageH']) - pdfReportDimensions['L'] - pdfReportDimensions['R'] }}mm;
             height:     {{ pdfReportDimensions['footerH'] }}mm; 
         }
 
