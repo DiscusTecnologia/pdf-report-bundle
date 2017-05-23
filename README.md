@@ -9,6 +9,10 @@ Symfony Bundle. Wrapper of wkhtmltopdf that uses twig templating to generate pdf
 You need of wkhtmltopdf installed in your system.
 
 ## Instalation
+
+You need of the [wkhtmltopdf](https://wkhtmltopdf.org/) installed in your OS.
+
+
 Require the bundle with composer:  
 ```bash
 composer require discustecnologia/pdf-report-bundle
